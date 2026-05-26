@@ -1,0 +1,17 @@
+export interface CategoryInfo {
+  id: string;
+  name: string;
+}
+
+export interface Entry {
+  id: string;
+  title: string;
+  date: string;
+  coverFileName: string;
+  noteFileName: string;
+  createdAt: string;
+}
+
+export interface AppConfig {
+  rootPath: string;
+}
