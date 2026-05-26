@@ -1,73 +1,56 @@
-# React + TypeScript + Vite
+# 回响
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+记录你看过的书籍和影视作品在心里留下的回响。
 
-Currently, two official plugins are available:
+## 功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **分类管理** — 自定义分类，拖拽排序，增删改查
+- **封面网格** — 封面卡片展示，拖拽排序，按名称搜索
+- **Markdown 笔记** — 点击封面打开浮窗，支持相对路径引用图片
+- **三套主题** — 素白 / 松绿 / 暖黄，各带亮色与暗色模式
+- **完全便携** — 单文件 exe，配置存于同级目录，不写注册表
 
-## React Compiler
+## 技术栈
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| 层 | 选型 |
+|---|---|
+| 桌面框架 | Tauri 2.0 |
+| 前端 | React 19 + TypeScript + Vite |
+| 样式 | Tailwind CSS v4 |
+| Markdown 编辑器 | @uiw/react-md-editor |
+| 图标 | lucide-react |
+| 拖拽 | @dnd-kit |
+| 后端 | Rust |
 
-## Expanding the ESLint configuration
+## 构建
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 安装依赖
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 开发模式
+npm run tauri dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 构建便携版 exe
+npm run tauri build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+产物在 `src-tauri/target/release/app.exe`，约 9 MB，复制到任意目录即可运行。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 数据存储
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+所有数据存于用户指定的文件夹，结构如下：
+
 ```
+MyLibrary/
+├── categories.json       # 分类列表
+├── {分类名}/
+│   ├── index.json        # 条目索引
+│   ├── covers/           # 封面图片
+│   └── notes/            # Markdown 笔记
+└── ...
+```
+
+## 许可
+
+MIT
