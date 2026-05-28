@@ -26,5 +26,6 @@ dist-ssr
 # Runtime config (exe同级目录)
 config.json
 
-# Claude local settings
+# Claude
 .claude/
+CLAUDE.md
