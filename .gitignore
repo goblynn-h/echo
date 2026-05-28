@@ -1,0 +1,5 @@
+# Runtime config (exe同级目录)
+config.json
+
+# Claude local settings
+.claude/
