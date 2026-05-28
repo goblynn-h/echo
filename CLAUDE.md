@@ -6,7 +6,7 @@
 
 ## 开发环境
 
-- 所有命令在 `d:/01Projects/seen/seen-app/` 目录下执行
+- 所有命令在 `d:/01Projects/seen/` 目录下执行
 - 需要先设置 PATH：`export PATH="$HOME/.cargo/bin:$PATH"`
 - 开发模式：`npm run tauri dev`（前端 HMR，Rust 自动重编译）
 - 构建 exe：`npm run tauri build`（产物在 `src-tauri/target/release/app.exe`）

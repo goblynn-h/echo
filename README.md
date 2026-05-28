@@ -16,7 +16,7 @@
 
 ```bash
 git clone https://github.com/goblynn-h/seen.git
-cd seen/seen-app
+cd seen
 npm install
 npm run tauri dev    # 开发
 npm run tauri build  # 构建 exe
